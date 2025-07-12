@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>GitHub Pages + PicGo + Typora + 自定义域名搭建免费图床</title>
+      <link href="/2024/12/08/hello-world/"/>
+      <url>/2024/12/08/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>GitHub Pages站点大小不能超过1G，若图片太多的话可以用普通github仓库来建图床，不过这样就无法使用自己的域名。否则只能新建一个github帐号，然后再建一个专门用来存图片的GitHub Pages，如果用博客网站的同一个github帐号来建GitHub Pages图床的话，应该会与博客网站共享站点空间大小的限制。</p><h2 id="用同一个github帐号建图床"><a href="#用同一个github帐号建图床" class="headerlink" title="用同一个github帐号建图床"></a>用同一个github帐号建图床</h2><h3 id="建立仓库"><a href="#建立仓库" class="headerlink" title="建立仓库"></a>建立仓库</h3><p>新建一个名为img的公共仓库<br>进入Settings -&gt; Pages，设置为main分支<br>Save后就会出现 Your site is published at <a href="http://www.test.com/img/">http://www.test.com/img/</a> 这样的通知。<br><img src="https://imgs.5205230.xyz/img/20241208075557864.png"> </p><blockquote><p>注意不勾选“Enforce HTTPS”，否则只能通过https访问，有些时候会用到http协议。</p></blockquote><h3 id="生成Token"><a href="#生成Token" class="headerlink" title="生成Token"></a>生成Token</h3><p>点击用户头像 –&gt; 选择 Settings。<br>点击 Developer settings。<br>点击 Personal access tokens 并点击 Generate new token 新建一个 Token。<br>填写 Token 描述，勾选 repo，然后点击 Generate token 生成一个 Token。<br>生成之后会显示Token的密钥，复制保存好。注意这个 Token 只会显示一次，自己先保存下来</p><h3 id="PicGo"><a href="#PicGo" class="headerlink" title="PicGo"></a>PicGo</h3><p>下载<a href="https://github.com/Molunerfinn/PicGo/releases">PicGo</a></p><p>windows下载exe结尾的<br><img src="https://imgs.5205230.xyz/img/20241208075918979.png"> </p><p>picgo自带的“GitHub图床”删除图片操作不能同步到github，使用picgo-plugin-github-plus插件可以在picgo相册中删除图片时自动把github上的图片也删除了。</p><p>在插件设置中搜索picgo-plugin-github-plus，然后安装即可。</p><p>安装好插件后，在图床设置 -&gt; githubPlus中进行githubPlus设置</p><p><img src="https://imgs.5205230.xyz/img/20241208080116786.png"><br>repo就是“github用户名&#x2F;仓库名”。</p><p>选择“设为默认图床”，然后确定。</p><p>版本2.2.0之后，PicGo 内部会默认开启一个小型的服务器，用于配合其他应用来调用 PicGo 进行上传。</p><p>打开 PicGo 详细页面，进入 PicGo 设置–设置Server<br><img src="https://imgs.5205230.xyz/img/20241208080237716.png"> </p><h3 id="Typora"><a href="#Typora" class="headerlink" title="Typora"></a>Typora</h3><p>版本要求：Typora 0.9.84 及以上。</p><p><img src="https://imgs.5205230.xyz/img/20241208080324781.png"><br>设置完后，点“验证图片上传选项”。<br>验证成功会显示如下结果</p><p><img src="https://imgs.5205230.xyz/img/20241208080438310.png"><br>使用Typora<br>上面的设置完成后，在 Typora 里插入图片时会把图片复制到本地的指定目录，待编辑完md文件后再选择格式 -&gt; 图像 -&gt;上传所有本地图片，就可以自动把md文件里的图片上传到github，并自动把图像的URL更换。不设置为插入图片就自动上传是因为上传到github后，自定义的图片URL生效需要一段时间，URL没生效时在Typora里无法预览图片。</p><blockquote><p>注意：typora 在线预览github图片失败是因为自定义的URL还不能访问，而typora没有自动刷新远程图片的功能，稍等一下重启md文件，就能看到typora把github图片加载出来了。</p></blockquote><h2 id="用独立的二级域名设置图片URL"><a href="#用独立的二级域名设置图片URL" class="headerlink" title="用独立的二级域名设置图片URL"></a>用独立的二级域名设置图片URL</h2><p>与上一种方法大同小异，区别在于要另外注册一个github帐号，就可以用“images.test.com”这样的域名设置图片URL了。</p><p>这里只列出两种方法的不同处，具体细节参考上一种方法。</p><h3 id="建立仓库时，仓库名后面要以github-io结尾"><a href="#建立仓库时，仓库名后面要以github-io结尾" class="headerlink" title="建立仓库时，仓库名后面要以github.io结尾"></a>建立仓库时，仓库名后面要以github.io结尾</h3><p><img src="https://imgs.5205230.xyz/img/20241208080655435.png"> </p><h3 id="要到万网设置域名解析，上一种方法不用。"><a href="#要到万网设置域名解析，上一种方法不用。" class="headerlink" title="要到万网设置域名解析，上一种方法不用。"></a>要到万网设置域名解析，上一种方法不用。</h3><p><img src="https://imgs.5205230.xyz/img/20241208081004665.png"> </p><blockquote><p>pages设置，同样不勾选“Enforce HTTPS”</p></blockquote><p><img src="https://imgs.5205230.xyz/img/20241208080821601.png"></p><h3 id="picgo设置"><a href="#picgo设置" class="headerlink" title="picgo设置"></a>picgo设置</h3><p>注意，仓库名中的test是我新建的github帐号用户名，test.github.io是刚刚创建的github pages仓库。域名写刚刚解析的二级域名。<br><img src="https://imgs.5205230.xyz/img/20241208081119886.png"> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 图床 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
