@@ -1,0 +1,3 @@
+var posts=["2020/05/10/2020-05-10-mp-ttl/","2022/05/10/2022-05-11-phone-linux/","2020/05/10/2022-05-12-FRP/","2023/05/13/2023-05-13-swap/","2023/05/14/2023-05-14-cdnfly/","2023/04/20/2023-06-07-telegraph-Image/","2023/07/20/2023-07-20-CFdocker/","2024/07/20/2024-07-20-Vless/","2024/08/18/2024-08-18-qunhuiwendu/","2024/11/22/2024-11-22-centos7-hy/","2024/09/02/2024-09-02-serv00-recover/","2024/12/08/2024-12-08-picgo/","2025/07/01/2025-07-01-VPS-Cloudflare/"];function toRandomPost(){
+    pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
+  };
