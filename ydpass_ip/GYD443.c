@@ -1,4 +1,4 @@
-//特殊线路： ./GYD443 -q 443 -w 7 -c 0
+//特殊线路： ./GYD443 -q 443 -w 47 -c 0
 //普通线路： ./GYD443 -q 443 -w 3 -c 3
 //编译：gcc -o GYD443 gyd80.c -lnetfilter_queue -lnfnetlink -lpthread -lcurl -ljson-c -lssl -lcrypto
 //外网IP验证
