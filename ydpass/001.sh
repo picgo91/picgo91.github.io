@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 更新系统
+# 更新系统1
 sudo apt update && sudo apt upgrade -y
 
 # 安装Nginx
