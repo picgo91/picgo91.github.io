@@ -25,18 +25,17 @@ sudo ./tcp_https -q 443 -w 17
 g++ -o tcp_https tcp_https.cpp -lssl -lcrypto -lpthread -lnetfilter_queue -lnfnetlink -std=c++17
 ```
 
-##### // 文件结构:
-##### // ./tcp_https       # 编译后的可执行文件
-##### // ./json.txt        # 域名跳转配置
-##### // ./ssl.pem         # 默认证书
-##### // ./logs.txt        # 日志文件
-##### // ./certs/          # 各域名证书目录
-##### //    ├── 109.ugl3nkae.vip/
-##### //    │   ├── cert.pem
-##### //    │   └── key.pem
-##### //    └── 109.6twki9.sbs/
-##### //        ├── cert.pem
-##### //        └── key.pem
-
+./
+├── tcp_https          # 主程序（编译后的可执行文件）
+├── json.txt           # 域名跳转配置文件
+├── ssl.pem           # 默认SSL证书文件
+├── logs.txt          # 日志文件
+└── certs/            # 各域名证书目录
+    ├── 109.ugl3nkae.vip/
+    │   ├── cert.pem
+    │   └── key.pem
+    └── 109.6twki9.sbs/
+        ├── cert.pem
+        └── key.pem
 
 
