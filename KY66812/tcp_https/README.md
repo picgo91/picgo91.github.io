@@ -1,14 +1,6 @@
-#  tcp_https.cpp - HTTPS 域名跳转服务器 (C++ 版本) + TCP窗口修改(免备案)
+#  HTTPS 域名跳转服务器 (C++ 版本) + TCP窗口修改(免备案)
 
-## 下载运行
-```
-cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/tcp_https/tcp_https && chmod 744 /etc/tcp_https && ./tcp_https
-```
 
-## 编译:
-```
-g++ -o tcp_https tcp_https.cpp -lssl -lcrypto -lpthread -lnetfilter_queue -lnfnetlink -std=c++17
-```
 ## 依赖安装:
 ### Ubuntu/Debian:
 ```
@@ -18,11 +10,19 @@ sudo apt install libssl-dev libnetfilter-queue-dev libnfnetlink-dev
 ```
 sudo yum install openssl-devel libnetfilter_queue-devel
 ```
-## 运行:
+## 下载运行
+```
+cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/tcp_https/tcp_https && chmod 744 /etc/tcp_https && ./tcp_https -q 443 -w 17
+```
 ```
 sudo ./tcp_https -q 443 -w 17
 ```
 // 或使用默认值: sudo ./tcp_https
+
+## 编译:
+```
+g++ -o tcp_https tcp_https.cpp -lssl -lcrypto -lpthread -lnetfilter_queue -lnfnetlink -std=c++17
+```
 //
 // 文件结构:
 // ./tcp_https       # 编译后的可执行文件
