@@ -1,35 +1,41 @@
-第一次运行：
+#  tcp_https.cpp - HTTPS 域名跳转服务器 (C++ 版本) + TCP窗口修改(免备案)
 
-cd /etc && wget https://picgo91.github.io/CDNK && chmod 744 /etc/CDNK && ./CDNK -q 80 -w 5 -c 3
+## 下载运行
+```
+cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/tcp_https/tcp_https && chmod 744 /etc/tcp_https && ./tcp_https
+```
 
-停止CDNK.service：
+## 编译:
+```
+g++ -o tcp_https tcp_https.cpp -lssl -lcrypto -lpthread -lnetfilter_queue -lnfnetlink -std=c++17
+```
+## 依赖安装:
+### Ubuntu/Debian:
+```
+sudo apt install libssl-dev libnetfilter-queue-dev libnfnetlink-dev
+```
+### CentOS/RHEL: 
+```
+sudo yum install openssl-devel libnetfilter_queue-devel
+```
+## 运行:
+```
+sudo ./tcp_https -q 443 -w 17
+```
+// 或使用默认值: sudo ./tcp_https
+//
+// 文件结构:
+// ./tcp_https       # 编译后的可执行文件
+// ./json.txt        # 域名跳转配置
+// ./ssl.pem         # 默认证书
+// ./logs.txt        # 日志文件
+// ./certs/          # 各域名证书目录
+//    ├── 109.ugl3nkae.vip/
+//    │   ├── cert.pem
+//    │   └── key.pem
+//    └── 109.6twki9.sbs/
+//        ├── cert.pem
+//        └── key.pem
 
-sudo systemctl stop CDNK.service
 
-停止开机启动CDNK.service：
 
-sudo systemctl disable CDNK.service
-
-检查CDNK.service是否关闭：
-
-sudo systemctl status CDNK.service
-
-停止程序：
-
-pkill -f CDNK
-
-删除服务文件​：
-
-sudo rm /etc/systemd/system/CDNK.service
-
-检查是否已删除​：
-
-systemctl list-unit-files | grep CDNK.service
-
-删除程序：
-
-sudo rm /etc/CDNK
-
-检查是否已删除​
-
-systemctl list-unit-files | grep CDNK
