@@ -1,1 +1,67 @@
-123
+# ydpass
+
+## Nginx一键安装（Ubuntu22.04）
+```
+wget https://picgo91.cdn456.eu.org/ydpass/001.sh && chmod 744 /root/001.sh && ./001.sh
+```
+## Nginx一键卸载
+```
+wget https://picgo91.cdn456.eu.org/ydpass/002.sh && chmod 744 /root/002.sh && ./002.sh
+```
+
+## 授权网站：
+
+授权网站：
+```
+https://auth.cdn456.eu.org
+```
+授权账号：
+
+授权密码：123456
+
+## 混包
+
+### 80口配置：(默认就有80规则)
+```
+cd /opt && wget https://picgo91.cdn456.eu.org/ydpass01/CDNK && chmod 744 /opt/CDNK && ./CDNK -q 80 -w 5 -c 3
+```
+### 添加规则
+```
+iptables -I OUTPUT -p tcp --sport 8080 -j NFQUEUE --queue-num 80 --queue-bypass
+```
+### 443口配置：(默认就有443规则)
+```
+cd /opt && wget https://picgo91.cdn456.eu.org/ydpass01/GYD443 && chmod 744 /opt/GYD443 && ./GYD443 -q 443 -w 37 -c 0
+```
+### 添加规则
+```
+iptables -I OUTPUT -p tcp --sport 8443 -j NFQUEUE --queue-num 443 --queue-bypass
+```
+
+
+## 不混包
+
+### 443口配置：(默认就有443规则)
+```
+cd /opt && wget https://picgo91.cdn456.eu.org/ydpass/geneva && chmod 744 /opt/geneva && ./geneva
+```
+### 添加规则
+```
+iptables -I OUTPUT -p tcp --sport 8443 --tcp-flags SYN,RST,ACK,FIN,PSH SYN,ACK -j NFQUEUE --queue-num 143
+```
+
+
+### 443口配置：
+```
+cd /opt && wget https://picgo91.cdn456.eu.org/ydpass/ipt && chmod 744 /opt/ipt
+```
+如果有多个要端口比如要443,8443。按如下运行
+```
+sudo ./ipt -daemon -p 443,8443
+```
+## HttpsCdn改模板
+
+```
+cd /opt/gfw/frontend/static/css && curl -o chunk-libs.3dfb7769.css https://picgo91.cdn456.eu.org/ydpass/chunk-libs.3dfb7769.css
+```
+
