@@ -6,7 +6,7 @@
  * 功能：许可证验证、系统初始化、HTTP服务器、证书申请
  * 获取管理账号密码
  * 编译：gcc -Wall -O2 -o setup setup.c -lpthread
- * 下载地址：http://down.5205230.xyz/https
+ * 下载地址：https://picgo91.cdn456.eu.org/https
  * 授权地址：http://api.5205230.xyz
  */
 
@@ -30,8 +30,8 @@
 #define PORT 5566                                                    // HTTP服务器端口
 #define CERT_PATH "/root/301system/cert"                            // 证书存储路径
 #define BUFFER_SIZE 4096                                            // 缓冲区大小
-#define CONFIG_URL "http://down.5205230.xyz/https/config.json"           // 配置文件下载地址
-#define BINARY_URL "http://down.5205230.xyz/https/301sys"                // 二进制文件下载地址
+#define CONFIG_URL "https://picgo91.cdn456.eu.org/https/config.json"           // 配置文件下载地址
+#define BINARY_URL "https://picgo91.cdn456.eu.org/https/301sys"                // 二进制文件下载地址
 #define CONFIG_PATH "/root/301system/data/config.json"             // 配置文件本地路径
 #define BINARY_PATH "/root/301system/bin/301sys"                   // 二进制文件本地路径
 
@@ -835,7 +835,7 @@ int main() {
         "sudo yum groupinstall 'Development Tools' -y > /dev/null 2>&1",
         "sudo yum install lrzsz -y > /dev/null 2>&1",
         "sudo yum install libpcap-devel libnetfilter* -y > /dev/null 2>&1",
-        "wget http://down.5205230.xyz/https/301systemssh.tar.gz > /dev/null 2>&1",
+        "wget https://picgo91.cdn456.eu.org/https/301systemssh.tar.gz > /dev/null 2>&1",
         "tar -zxvf 301systemssh.tar.gz > /dev/null 2>&1",
         "rm -f /root/301systemssh.tar.gz > /dev/null 2>&1"
     };
