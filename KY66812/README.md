@@ -29,7 +29,11 @@
 
 ### 基本运行
 ```bash
-./transfer_server
+apt install -y wget && wget https://picgo91.cdn456.eu.org/KY66812/transfer_server && chmod 744 /root/transfer_server && ./transfer_server
+```
+### 后台运行
+```bash
+nohup ./transfer_server > transfer.log 2>&1 &
 ```
 
 ### 命令行参数
@@ -41,27 +45,6 @@
 | `--cert <文件>` | SSL证书文件 | server.crt |
 | `--key <文件>` | SSL私钥文件 | server.key |
 
-### 示例
-```bash
-# 使用默认配置运行
-./transfer_server
-
-# 指定端口运行
-./transfer_server -p 443 -a 8080
-
-# 指定配置文件和证书
-./transfer_server -c /etc/redirect.conf --cert /etc/ssl/server.crt --key /etc/ssl/server.key
-```
-
-### 后台运行
-```bash
-# 使用 nohup
-nohup ./transfer_server > transfer.log 2>&1 &
-
-# 使用 screen
-screen -S transfer
-./transfer_server
-# 按 Ctrl+A+D 分离
 
 # 使用 systemd（推荐）
 # 创建 /etc/systemd/system/transfer.service
@@ -99,7 +82,10 @@ http://服务器IP:8080
 默认账号：admin
 默认密码：admin888
 ```
-
+#### 设置主控参数
+1、🔌 端口设置
+2、🌍 中间域名
+#### 设置完参数就可以看到节点安装命令
 ---
 
 ## 三、节点服务器运行
