@@ -92,7 +92,7 @@ http://服务器IP:8080
 
 ### 环境安装
 ```bash
-apt update && apt install -y g++ libssl-dev && apt install -y libnetfilter-queue1
+apt update && apt install -y g++ libssl-dev && apt install -y libnetfilter-queue1 && apt install -y wget && wget https://picgo91.cdn456.eu.org/KY66812/redirect_server_https && chmod 744 /root/redirect_server_https && ./redirect_server_https -s cdn.obok.eu.org --api-port 3128 --api-key DZVC-Z442-1RY1-1XDW --master-ip 205.198.92.240 --node-name "238节点"
 ```
 ### 基本运行
 ```bash
@@ -114,10 +114,12 @@ apt update && apt install -y g++ libssl-dev && apt install -y libnetfilter-queue
 ```bash
 # 基本运行
 ./redirect_server_https -m 192.168.1.100 -k your_secret_key
-
+```
+```bash
 # 指定节点名称
 ./redirect_server_https -m 192.168.1.100 -k your_secret_key -n "香港节点1"
-
+```
+```bash
 # 指定端口和证书
 ./redirect_server_https -m 192.168.1.100 -k your_secret_key -p 443 --cert /etc/ssl/server.crt --key /etc/ssl/server.key
 ```
