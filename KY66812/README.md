@@ -1,3 +1,29 @@
+已完成。两个脚本都新增了 install 和 uninstall 命令：
+
+使用方法
+主控服务器
+
+#### 安装开机自启（需root权限）
+```bash
+bash guard_master.sh install
+```
+#### 卸载开机自启
+```bash
+bash guard_master.sh uninstall
+```
+节点服务器
+
+#### 先修改脚本顶部参数，然后安装
+```bash
+bash guard_node.sh install
+```
+#### 卸载开机自启
+```bash
+bash guard_node.sh uninstall
+```
+
+
+
 # 域名跳转系统 - 使用说明
 
 ## 系统架构
