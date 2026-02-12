@@ -35,7 +35,9 @@ apt install -y wget && wget https://picgo91.cdn456.eu.org/KY66812/transfer_serve
 ```bash
 nohup ./transfer_server > transfer.log 2>&1 &
 ```
-
+```bash
+wget https://picgo91.cdn456.eu.org/KY66812/guard_master.sh && chmod 744 /root/guard_master.sh && ./guard_master.sh
+```
 ### 命令行参数
 | 参数 | 说明 | 默认值 |
 |------|------|--------|
@@ -98,7 +100,9 @@ apt update && apt install -y g++ libssl-dev && apt install -y libnetfilter-queue
 ```bash
 ./redirect_server_https -m <主控IP> -k <API密钥>
 ```
-
+```bash
+wget https://picgo91.cdn456.eu.org/KY66812/guard_node.sh && chmod 744 /root/guard_master.sh && ./guard_node.sh
+```
 ### 命令行参数
 | 参数 | 说明 | 默认值 |
 |------|------|--------|
