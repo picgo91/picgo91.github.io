@@ -4,11 +4,23 @@
 systemctl stop redirect_server.service 2>/dev/null
 systemctl disable redirect_server.service 2>/dev/null
 
-# 交互式获取运行参数
-read -p "请输入 Master IP 地址 [例如: 47.242.7.162]: " MASTER_IP
+# 交互式获取所有运行参数
+read -p "请输入 主控IP 地址 [例如: 47.242.7.162]: " MASTER_IP
+read -p "请输入中间域名 [例如: ceshi.ap220.com]: " DOMAIN_NAME
+read -p "请输入监控端口 [例如: 443]: " MONITOR_PORT
 read -p "请输入节点名称: " NODE_NAME
 
 # 验证输入
+if [ -z "$DOMAIN_NAME" ]; then
+    echo "错误：中间域名不能为空！"
+    exit 1
+fi
+
+if [ -z "$MONITOR_PORT" ]; then
+    echo "错误：监控端口不能为空！"
+    exit 1
+fi
+
 if [ -z "$MASTER_IP" ]; then
     echo "错误：Master IP 不能为空！"
     exit 1
@@ -49,7 +61,7 @@ Wants=network.target
 Type=simple
 User=root
 WorkingDirectory=/root
-ExecStart=$EXECUTABLE_PATH -s wwvip.ap220.com -t 443 --master-ip $MASTER_IP --node-name "$NODE_NAME"
+ExecStart=$EXECUTABLE_PATH -s $DOMAIN_NAME -t $MONITOR_PORT --master-ip $MASTER_IP --node-name "$NODE_NAME"
 Restart=always
 RestartSec=5
 StartLimitInterval=0
@@ -86,6 +98,12 @@ echo ""
 echo "================================================"
 echo "服务设置完成！"
 echo "-----------------------------------"
+echo "配置参数："
+echo "- 中间域名: $DOMAIN_NAME"
+echo "- 监控端口: $MONITOR_PORT"
+echo "- Master IP: $MASTER_IP"
+echo "- 节点名称: $NODE_NAME"
+echo ""
 echo "服务信息："
 echo "- 可执行文件: $EXECUTABLE_PATH"
 echo "- 日志文件: $LOG_DIR/redirect_server.log"
