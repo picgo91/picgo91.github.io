@@ -323,8 +323,7 @@
                         <i class="fas fa-desktop"></i>
                         <span>终端输出示例</span>
                     </div>
-                    <div class="output-block">
-                        root@iZj6cepotcelupz5p1quraZ:~# ps aux | grep transfer_server</br>
+                    <div class="output-block">root@iZj6cepotcelupz5p1quraZ:~# ps aux | grep transfer_server</br>
 root        6597  0.0  0.1 532312  7752 pts/0    Sl   09:08   0:00 ./transfer_server</br>
 root       11077  0.0  0.0   6676  2432 pts/1    S+   10:26   0:00 grep --color=auto transfer_server</div>
                 </div>
@@ -356,16 +355,17 @@ root       11077  0.0  0.0   6676  2432 pts/1    S+   10:26   0:00 grep --color=
                         <i class="fas fa-desktop"></i>
                         <span>终端输出示例</span>
                     </div>
-                    <div class="output-block">root@iZj6cepotcelupz5p1quraZ:~# sudo systemctl status transfer-server
-● transfer-server.service - Transfer Server Service
-     Loaded: loaded (/etc/systemd/system/transfer-server.service; enabled; preset: enabled)
-     Active: active (running) since Fri 2026-02-13 09:09:14 CST; 1h 19min ago
-   Main PID: 6670 (transfer_server)
-      Tasks: 4 (limit: 8650)
-     Memory: 1.6M (peak: 2.6M)
-        CPU: 397ms
-     CGroup: /system.slice/transfer-server.service
-             └─6670 /root/transfer_server
+                    <div class="output-block">
+                        root@iZj6cepotcelupz5p1quraZ:~# sudo systemctl status transfer-server</br>
+● transfer-server.service - Transfer Server Service</br>
+     Loaded: loaded (/etc/systemd/system/transfer-server.service; enabled; preset: enabled)</br>
+     Active: active (running) since Fri 2026-02-13 09:09:14 CST; 1h 19min ago</br>
+   Main PID: 6670 (transfer_server)</br>
+      Tasks: 4 (limit: 8650)</br>
+     Memory: 1.6M (peak: 2.6M)</br>
+        CPU: 397ms</br>
+     CGroup: /system.slice/transfer-server.service</br>
+             └─6670 /root/transfer_server</br>
 
 Feb 13 09:09:14 iZj6cepotcelupz5p1quraZ systemd[1]: Started transfer-server.service - Transfer Server Service.</div>
                 </div>
@@ -452,7 +452,7 @@ Feb 13 09:09:14 iZj6cepotcelupz5p1quraZ systemd[1]: Started transfer-server.serv
                         <i class="fas fa-desktop"></i>
                         <span>终端输出示例</span>
                     </div>
-                    <div class="output-block">root@iZj6cbnt3e6d1s2gi1zua3Z:~# ps aux | grep redirect_server_https
+                    <div class="output-block">root@iZj6cbnt3e6d1s2gi1zua3Z:~# ps aux | grep redirect_server_https</br>
 root         862  0.0  0.2 389884  9856 ?        Ssl  10:07   0:00 /root/redirect_server_https -s ceshi.ap220.com -t 443 --master-ip 47.242.7.162 --node-name 节点69</div>
                 </div>
                 
@@ -483,16 +483,17 @@ root         862  0.0  0.2 389884  9856 ?        Ssl  10:07   0:00 /root/redirec
                         <i class="fas fa-desktop"></i>
                         <span>终端输出示例</span>
                     </div>
-                    <div class="output-block">root@iZj6cbnt3e6d1s2gi1zua3Z:~# systemctl status redirect_server
-● redirect_server.service - Redirect Server HTTPS Service
-     Loaded: loaded (/etc/systemd/system/redirect_server.service; enabled; preset: enabled)
-     Active: active (running) since Fri 2026-02-13 10:07:38 CST; 10min ago
-   Main PID: 862 (redirect_server)
-      Tasks: 6 (limit: 4124)
-     Memory: 3.4M (peak: 3.9M)
-        CPU: 52ms
-     CGroup: /system.slice/redirect_server.service
-             └─862 /root/redirect_server_https -s ceshi.ap220.com -t 443 --master-ip 47.242.7.162 --node-name 节点69
+                    <div class="output-block">
+                        root@iZj6cbnt3e6d1s2gi1zua3Z:~# systemctl status redirect_server</br>
+● redirect_server.service - Redirect Server HTTPS Service</br>
+     Loaded: loaded (/etc/systemd/system/redirect_server.service; enabled; preset: enabled)</br>
+     Active: active (running) since Fri 2026-02-13 10:07:38 CST; 10min ago</br>
+   Main PID: 862 (redirect_server)</br>
+      Tasks: 6 (limit: 4124)</br>
+     Memory: 3.4M (peak: 3.9M)</br>
+        CPU: 52ms</br>
+     CGroup: /system.slice/redirect_server.service</br>
+             └─862 /root/redirect_server_https -s ceshi.ap220.com -t 443 --master-ip 47.242.7.162 --node-name 节点69</br>
 
 Feb 13 10:07:38 iZj6cbnt3e6d1s2gi1zua3Z systemd[1]: Started redirect_server.service - Redirect Server HTTPS Service.</div>
                 </div>
