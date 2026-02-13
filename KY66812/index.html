@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务器部署操作手册 - Transfer Server</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        header h1 i {
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .deployment-section {
+            margin-bottom: 40px;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-header {
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            color: white;
+            padding: 18px 25px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-header i {
+            font-size: 24px;
+        }
+        
+        .server-type {
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: auto;
+        }
+        
+        .step {
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        
+        .step-number {
+            background-color: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            position: relative;
+            border-left: 4px solid #3498db;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .copy-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .note {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .output-block {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+        
+        .output-header {
+            color: #4fc3f7;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+        
+        .warning {
+            background-color: #fff3e0;
+            border: 1px solid #ffb74d;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .warning-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+            background-color: #f9f9f9;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 8px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 22px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .section-header {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-server"></i> 服务器部署操作手册</h1>
+            <p class="subtitle">Transfer Server 主控与节点服务器部署指南</p>
+        </header>
+        
+        <div class="content">
+            <div class="warning">
+                <div class="warning-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>重要注意事项</h3>
+                </div>
+                <p>1. 请确保您拥有服务器的 root 或 sudo 权限</p>
+                <p>2. 所有下载链接仅为示例，请替换为实际有效的地址</p>
+                <p>3. IP地址、域名和节点名称需根据实际情况修改</p>
+                <p>4. 建议在测试环境中验证后再部署到生产环境</p>
+            </div>
+            
+            <div class="deployment-section">
+                <div class="section-header">
+                    <i class="fas fa-desktop"></i>
+                    <span>一、主控服务器部署</span>
+                    <div class="server-type">Master Server</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3>环境搭建、文件下载与权限修改</h3>
+                    </div>
+                    <p>安装 wget 并下载 transfer_server 程序，同时修改执行权限：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code1')">复制代码</button>
+                    </div>
+                    <pre id="code1">apt install -y wget && wget https://picgo91.cdn456.eu.org/KY66812/002/transfer_server && chmod 744 /root/transfer_server && ./transfer_server</pre>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3>初始化运行</h3>
+                    </div>
+                    <p>执行程序进行初始化配置：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code2')">复制代码</button>
+                    </div>
+                    <pre id="code2">./transfer_server</pre>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i> 当出现管理地址时按 <strong>Ctrl+C</strong> 退出程序
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3>后台运行</h3>
+                    </div>
+                    <p>使用 nohup 命令让程序在后台持续运行：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code3')">复制代码</button>
+                    </div>
+                    <pre id="code3">nohup ./transfer_server > transfer.log 2>&1 &</pre>
+                    
+                    <div class="step-header" style="margin-top: 20px;">
+                        <div class="step-number">3.1</div>
+                        <h4>查看是否正常运行</h4>
+                    </div>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code4')">复制代码</button>
+                    </div>
+                    <pre id="code4">ps aux | grep transfer_server</pre>
+                    
+                    <p>正常启动后应显示类似以下内容：</p>
+                    <div class="output-header">
+                        <i class="fas fa-desktop"></i>
+                        <span>终端输出示例</span>
+                    </div>
+                    <div class="output-block">root@iZj6cepotcelupz5p1quraZ:~# ps aux | grep transfer_server
+root        6597  0.0  0.1 532312  7752 pts/0    Sl   09:08   0:00 ./transfer_server
+root       11077  0.0  0.0   6676  2432 pts/1    S+   10:26   0:00 grep --color=auto transfer_server</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h3>开启自动启停和进程守护</h3>
+                    </div>
+                    <p>下载并运行守护脚本：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code5')">复制代码</button>
+                    </div>
+                    <pre id="code5">wget https://picgo91.cdn456.eu.org/KY66812/002/guard_master.sh && chmod 744 /root/guard_master.sh && ./guard_master.sh</pre>
+                    
+                    <div class="step-header" style="margin-top: 20px;">
+                        <div class="step-number">4.1</div>
+                        <h4>查看是否启动成功</h4>
+                    </div>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code6')">复制代码</button>
+                    </div>
+                    <pre id="code6">sudo systemctl status transfer-server</pre>
+                    
+                    <p>正常启动后应显示类似以下内容：</p>
+                    <div class="output-header">
+                        <i class="fas fa-desktop"></i>
+                        <span>终端输出示例</span>
+                    </div>
+                    <div class="output-block">root@iZj6cepotcelupz5p1quraZ:~# sudo systemctl status transfer-server
+● transfer-server.service - Transfer Server Service
+     Loaded: loaded (/etc/systemd/system/transfer-server.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2026-02-13 09:09:14 CST; 1h 19min ago
+   Main PID: 6670 (transfer_server)
+      Tasks: 4 (limit: 8650)
+     Memory: 1.6M (peak: 2.6M)
+        CPU: 397ms
+     CGroup: /system.slice/transfer-server.service
+             └─6670 /root/transfer_server
+
+Feb 13 09:09:14 iZj6cepotcelupz5p1quraZ systemd[1]: Started transfer-server.service - Transfer Server Service.</div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="deployment-section">
+                <div class="section-header">
+                    <i class="fas fa-network-wired"></i>
+                    <span>二、节点服务器部署</span>
+                    <div class="server-type">Node Server</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3>环境搭建、文件下载与权限修改</h3>
+                    </div>
+                    <p>安装依赖并下载 redirect_server_https 程序：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code7')">复制代码</button>
+                    </div>
+                    <pre id="code7">apt update && apt install -y g++ libssl-dev && apt install -y libnetfilter-queue1 && apt install -y wget && wget https://picgo91.cdn456.eu.org/KY66812/002/redirect_server_https && chmod 744 /root/redirect_server_https</pre>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3>查看主控后台的节点安装命令</h3>
+                    </div>
+                    <p>从主控服务器后台获取具体的节点启动命令：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行示例</span>
+                        <button class="copy-btn" onclick="copyCode('code8')">复制代码</button>
+                    </div>
+                    <pre id="code8">nohup ./redirect_server_https -s wwvip.ap220.com -t 443 --master-ip 47.242.7.162 --node-name "节点名称" > redirect_server.log 2>&1 &</pre>
+                    <div class="note">
+                        <i class="fas fa-exclamation-circle"></i> 请将命令中的参数替换为实际值
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3>初始化运行</h3>
+                    </div>
+                    <p>首次运行以测试连接：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code9')">复制代码</button>
+                    </div>
+                    <pre id="code9">./redirect_server_https -s wwvip.ap220.com -t 443 --master-ip 47.242.7.162 --node-name "节点名称"</pre>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i> 看到心跳同步后，按 <strong>Ctrl+C</strong> 退出
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h3>后台运行</h3>
+                    </div>
+                    <p>测试成功后，在后台启动服务：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code10')">复制代码</button>
+                    </div>
+                    <pre id="code10">nohup ./redirect_server_https -s wwvip.ap220.com -t 443 --master-ip 47.242.7.162 --node-name "节点名称" > redirect_server.log 2>&1 &</pre>
+                    
+                    <div class="step-header" style="margin-top: 20px;">
+                        <div class="step-number">4.1</div>
+                        <h4>查看是否正常运行</h4>
+                    </div>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code11')">复制代码</button>
+                    </div>
+                    <pre id="code11">ps aux | grep redirect_server_https</pre>
+                    
+                    <p>正常启动后应显示类似以下内容：</p>
+                    <div class="output-header">
+                        <i class="fas fa-desktop"></i>
+                        <span>终端输出示例</span>
+                    </div>
+                    <div class="output-block">root@iZj6cbnt3e6d1s2gi1zua3Z:~# ps aux | grep redirect_server_https
+root         862  0.0  0.2 389884  9856 ?        Ssl  10:07   0:00 /root/redirect_server_https -s ceshi.ap220.com -t 443 --master-ip 47.242.7.162 --node-name 节点69</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <h3>自动启停和进程守护</h3>
+                    </div>
+                    <p>下载并运行节点守护脚本：</p>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code12')">复制代码</button>
+                    </div>
+                    <pre id="code12">wget https://picgo91.cdn456.eu.org/KY66812/002/guard_node.sh && chmod 744 /root/guard_node.sh && ./guard_node.sh</pre>
+                    
+                    <div class="step-header" style="margin-top: 20px;">
+                        <div class="step-number">5.1</div>
+                        <h4>查看是否启动成功</h4>
+                    </div>
+                    <div class="code-header">
+                        <span><i class="fas fa-terminal"></i> 命令行</span>
+                        <button class="copy-btn" onclick="copyCode('code13')">复制代码</button>
+                    </div>
+                    <pre id="code13">systemctl status redirect_server</pre>
+                    
+                    <p>正常启动后应显示类似以下内容：</p>
+                    <div class="output-header">
+                        <i class="fas fa-desktop"></i>
+                        <span>终端输出示例</span>
+                    </div>
+                    <div class="output-block">root@iZj6cbnt3e6d1s2gi1zua3Z:~# systemctl status redirect_server
+● redirect_server.service - Redirect Server HTTPS Service
+     Loaded: loaded (/etc/systemd/system/redirect_server.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2026-02-13 10:07:38 CST; 10min ago
+   Main PID: 862 (redirect_server)
+      Tasks: 6 (limit: 4124)
+     Memory: 3.4M (peak: 3.9M)
+        CPU: 52ms
+     CGroup: /system.slice/redirect_server.service
+             └─862 /root/redirect_server_https -s ceshi.ap220.com -t 443 --master-ip 47.242.7.162 --node-name 节点69
+
+Feb 13 10:07:38 iZj6cbnt3e6d1s2gi1zua3Z systemd[1]: Started redirect_server.service - Redirect Server HTTPS Service.</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 服务器部署指南 | 最后更新：2026年2月13日</p>
+            <p><i class="fas fa-info-circle"></i> 本手册适用于Linux服务器环境部署</p>
+        </footer>
+    </div>
+
+    <script>
+        // 复制代码功能
+        function copyCode(id) {
+            const codeElement = document.getElementById(id);
+            const text = codeElement.innerText;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const button = event.target;
+                const originalText = button.innerText;
+                button.innerText = '已复制!';
+                button.style.backgroundColor = '#2ecc71';
+                
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.backgroundColor = '#3498db';
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败: ', err);
+                alert('复制失败，请手动选择并复制代码');
+            });
+        }
+        
+        // 为所有代码块添加点击复制功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const preElements = document.querySelectorAll('pre');
+            preElements.forEach(pre => {
+                pre.addEventListener('click', function(e) {
+                    if (e.target.tagName !== 'BUTTON') {
+                        const text = this.innerText;
+                        navigator.clipboard.writeText(text).then(() => {
+                            // 显示复制成功提示
+                            const hint = document.createElement('div');
+                            hint.textContent = '代码已复制到剪贴板';
+                            hint.style.position = 'fixed';
+                            hint.style.top = '20px';
+                            hint.style.right = '20px';
+                            hint.style.backgroundColor = '#2ecc71';
+                            hint.style.color = 'white';
+                            hint.style.padding = '10px 15px';
+                            hint.style.borderRadius = '5px';
+                            hint.style.zIndex = '1000';
+                            hint.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
+                            document.body.appendChild(hint);
+                            
+                            setTimeout(() => {
+                                document.body.removeChild(hint);
+                            }, 2000);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
