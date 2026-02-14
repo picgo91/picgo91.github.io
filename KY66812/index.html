@@ -265,15 +265,15 @@
                     
                     <h4>出现以下内容表示正常启动：</h4>
                     <div class="output-block">
-                        <pre>root@iZj6cepotcelupz5p1quraZ:~# sudo systemctl status transfer-server
-<span class="success">● transfer-server.service - Transfer Server Service</span>
-     Loaded: loaded (/etc/systemd/system/transfer-server.service; enabled; preset: enabled)
+                        <pre>root@iZj6cepotcelupz5p1quraZ:~# sudo systemctl status transfer_server
+<span class="success">● transfer_server.service - Transfer Server Service</span>
+     Loaded: loaded (/etc/systemd/system/transfer_server.service; enabled; preset: enabled)
      <span class="success">Active: active (running)</span> since Fri 2026-02-13 09:09:14 CST; 1h 19min ago
    Main PID: 6670 (transfer_server)
       Tasks: 4 (limit: 8650)
      Memory: 1.6M (peak: 2.6M)
         CPU: 397ms
-     CGroup: /system.slice/transfer-server.service
+     CGroup: /system.slice/transfer_server.service
              └─6670 /root/transfer_server
 
 Feb 13 09:09:14 iZj6cepotcelupz5p1quraZ systemd[1]: Started transfer-server.service - Transfer Server Service.</pre>
@@ -286,21 +286,21 @@ Feb 13 09:09:14 iZj6cepotcelupz5p1quraZ systemd[1]: Started transfer-server.serv
                         <div class="command-card">
                             <h5>停止服务</h5>
                             <div class="code-wrapper">
-                                <code>sudo systemctl stop transfer-server.service</code>
+                                <code>sudo systemctl stop transfer_server.service</code>
                                 <button class="copy-btn-small" onclick="copyCardCode(this)">复制</button>
                             </div>
                         </div>
                         <div class="command-card">
                             <h5>停止自启动</h5>
                             <div class="code-wrapper">
-                                <code>sudo systemctl disable transfer-server.service</code>
+                                <code>sudo systemctl disable transfer_server.service</code>
                                 <button class="copy-btn-small" onclick="copyCardCode(this)">复制</button>
                             </div>
                         </div>
                         <div class="command-card">
                             <h5>删除服务文件</h5>
                             <div class="code-wrapper">
-                                <code>sudo rm /etc/systemd/system/transfer-server.service</code>
+                                <code>sudo rm /etc/systemd/system/transfer_server.service</code>
                                 <button class="copy-btn-small" onclick="copyCardCode(this)">复制</button>
                             </div>
                         </div>
@@ -314,7 +314,7 @@ Feb 13 09:09:14 iZj6cepotcelupz5p1quraZ systemd[1]: Started transfer-server.serv
                         <div class="command-card">
                             <h5>查看服务状态</h5>
                             <div class="code-wrapper">
-                                <code>systemctl status transfer-server</code>
+                                <code>sudo systemctl status transfer_server</code>
                                 <button class="copy-btn-small" onclick="copyCardCode(this)">复制</button>
                             </div>
                         </div>
