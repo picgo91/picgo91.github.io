@@ -241,7 +241,15 @@
                 </h2>
                 
                 <div class="subsection">
-                    <h3>环境搭建 + 文件下载 + 修改权限</h3>
+                    <h3>环境搭建</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                        <pre>apt update -y && apt install g++ -y && apt install libssl-dev -y && apt install cron -y && systemctl enable --now cron</pre>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>文件下载 + 修改权限</h3>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">复制</button>
                         <pre>apt install -y wget && wget https://picgo91.cdn456.eu.org/KY66812/ymzf/transfer_server && chmod 744 /root/transfer_server</pre>
