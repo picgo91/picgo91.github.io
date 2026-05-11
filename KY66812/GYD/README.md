@@ -13,7 +13,7 @@ cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/CDNK && chmod 744 /etc
 ### 443口
 
 ```
-cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/CDNK443 && chmod 744 /etc/CDNK443 && ./CDNK443 -q 443 -w 37 -c 1
+cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/GYD443 && chmod 744 /etc/GYD443 && ./GYD443 -q 443 -w 37 -c 1
 ```
 #### 卸载：
 ```
