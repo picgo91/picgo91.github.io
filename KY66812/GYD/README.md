@@ -17,7 +17,7 @@ cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/GYD443 && chmod 744 /e
 ```
 #### 卸载：
 ```
-./etc/CDNK443 -u
+./etc/GYD443 -u
 ```
 
 ### IP段白名单：
