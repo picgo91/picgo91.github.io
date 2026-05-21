@@ -38,7 +38,11 @@ cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/001/geneva && chmod 74
 ```
 ./etc/geneva -u
 ```
-
+#### 443添加端口：
+##### 比如添加8443端口：
+```
+iptables -I OUTPUT -p tcp --sport 8443 -j NFQUEUE --queue-num 443 --queue-bypass
+```
 ### IP段白名单：
 ```
 156.234.115.0/24
