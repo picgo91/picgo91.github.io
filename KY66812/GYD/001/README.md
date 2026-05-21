@@ -7,7 +7,7 @@ sudo yum install -y gcc libnetfilter_queue-devel modprobe nfnetlink_queue && yum
 ```
 #### ubuntu
 ```
-apt-get update && apt-get install -y gcc libnetfilter-queue-dev
+apt-get update && apt-get install -y gcc libnetfilter-queue-dev && apt install -y iptables
 ```
 ### 运行
 
