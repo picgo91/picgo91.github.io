@@ -1,4 +1,4 @@
-CDNK_无授权_不加规则_自启动_运行服务_IP段限制_只显示NOT_RUNNING
+CDNK_无授权_加规则_自启动_运行服务_IP段限制_只显示NOT_RUNNING
 
 ### 安装环境
 #### centos
