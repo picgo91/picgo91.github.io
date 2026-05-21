@@ -17,7 +17,7 @@ cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/001/CDNK && chmod 744 
 ```
 #### 卸载：
 ```
-./etc/CDNK -u
+cd /etc && ./CDNK -u
 ```
 ### 混包443口
 
@@ -26,7 +26,7 @@ cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/001/GYD443 && chmod 74
 ```
 #### 卸载：
 ```
-./etc/GYD443 -u
+cd /etc && ./GYD443 -u
 ```
 
 ### 不混包443口
@@ -36,7 +36,7 @@ cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/001/geneva && chmod 74
 ```
 #### 卸载：
 ```
-./etc/geneva -u
+cd /etc && ./geneva -u
 ```
 #### 443添加端口：
 ##### 比如添加8443端口：
