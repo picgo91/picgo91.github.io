@@ -3,11 +3,11 @@ CDNK_无授权_不加规则_自启动_运行服务_IP段限制_只显示NOT_RUNN
 ### 安装环境
 #### centos
 ```
-yum install -y gcc libnetfilter_queue-devel && yum install wget -y
+sudo yum install -y gcc libnetfilter_queue-devel modprobe nfnetlink_queue && yum install wget -y
 ```
 #### ubuntu
 ```
-apt install -y libnetfilter-queue1
+sudo apt update sudo apt install -y gcc libnetfilter-queue-dev
 ```
 ### 运行
 
