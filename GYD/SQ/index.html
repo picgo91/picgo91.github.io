@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安装指南</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0b0f1a;
+      color: #e2e8f0;
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #334155;
+    }
+    h2 {
+      font-size: 1.4em;
+      margin: 30px 0 15px;
+      color: #60a5fa;
+    }
+    h3 {
+      font-size: 1.1em;
+      margin: 20px 0 10px;
+      color: #94a3b8;
+    }
+    .code-block {
+      position: relative;
+      background: #1e293b;
+      border-radius: 8px;
+      margin: 10px 0 20px;
+      overflow: hidden;
+    }
+    .code-block.highlight {
+      border-left: 3px solid #f59e0b;
+      background: #1c212e;
+    }
+    pre {
+      padding: 15px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+    }
+    code {
+      font-family: inherit;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #334155;
+      border: none;
+      color: #94a3b8;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover {
+      background: #475569;
+      color: #fff;
+    }
+    .copy-btn.copied {
+      background: #10b981;
+      color: #fff;
+    }
+    p { margin: 8px 0; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>安装指南</h1>
 
+    <h2>安装环境</h2>
+    <h3>centos</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>sudo yum install -y gcc libnetfilter_queue-devel modprobe nfnetlink_queue && yum install wget -y</code></pre>
+    </div>
+
+    <h3>ubuntu</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>apt-get update && apt-get install -y gcc libnetfilter-queue-dev && apt install -y iptables</code></pre>
+    </div>
+
+    <h2>运行</h2>
+
+    <h2>混包80口</h2>
+    <div class="code-block highlight">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>cd /OPT && wget https://picgo91.cdn456.eu.org/GYD/SQ/CDNK && chmod 744 /OPT/CDNK && ./CDNK -q 80 -w 7 -c 3</code></pre>
+    </div>
+    <h3>卸载：</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>cd /OPT && ./CDNK -u</code></pre>
+    </div>
+
+    <h2>混包443口</h2>
+    <div class="code-block highlight">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>cd /OPT && wget https://picgo91.cdn456.eu.org/GYD/SQ/GYD443 && chmod 744 /OPT/GYD443 && ./GYD443 -q 443 -w 37 -c 1</code></pre>
+    </div>
+    <h3>卸载：</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>cd /OPT && ./GYD443 -u</code></pre>
+    </div>
+
+    <h2>不混包443口</h2>
+    <div class="code-block highlight">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>cd /OPT && wget https://picgo91.cdn456.eu.org/GYD/SQ/geneva && chmod 744 /OPT/geneva && ./geneva -w 17</code></pre>
+    </div>
+    <h3>卸载：</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>cd /OPT && geneva -u</code></pre>
+    </div>
+
+    <h2>443添加端口</h2>
+    <p>比如添加8443端口：</p>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">复制</button>
+      <pre><code>iptables -I OUTPUT -p tcp --sport 8443 -j NFQUEUE --queue-num 443 --queue-bypass</code></pre>
+    </div>
+  </div>
+
+  <script>
+    async function copyCode(btn) {
+      const code = btn.nextElementSibling.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(code);
+        btn.textContent = '已复制';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '复制';
+          btn.classList.remove('copied');
+        }, 1500);
+      } catch (err) {
+        btn.textContent = '失败';
+        setTimeout(() => btn.textContent = '复制', 1500);
+      }
+    }
+  </script>
+</body>
+</html>
