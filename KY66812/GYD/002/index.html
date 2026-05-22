@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CDNK 无授权 + 加规则 + 自启动 + 运行服务</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 50px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 35px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #667eea;
+      color: #1a1a2e;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin: 40px 0 20px;
+      color: #667eea;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2::before {
+      content: '';
+      width: 6px;
+      height: 24px;
+      background: linear-gradient(180deg, #667eea, #764ba2);
+      border-radius: 3px;
+    }
+    h3 {
+      font-size: 1.15em;
+      margin: 25px 0 12px;
+      color: #4a4a6a;
+      font-weight: 500;
+    }
+    .code-block {
+      position: relative;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      margin: 12px 0 25px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .code-block:hover {
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+      border-color: #c7d2fe;
+    }
+    .code-block.highlight {
+      background: linear-gradient(135deg, #fef3e2 0%, #fde68a20);
+      border-color: #f59e0b;
+    }
+    .code-block.highlight::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #f59e0b, #d97706);
+    }
+    pre {
+      padding: 18px 20px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+      color: #1e293b;
+    }
+    code {
+      font-family: inherit;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #667eea;
+      border: none;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+    .copy-btn:hover {
+      background: #5a67d8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+    .copy-btn.copied {
+      background: #10b981;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+    p { margin: 10px 0; color: #475569; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>🚀 CDNK 无授权 + 加规则 + 自启动 + 运行服务</h1>
+
+      <h2>安装环境</h2>
+      <h3>CentOS</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>sudo yum install -y gcc libnetfilter_queue-devel modprobe nfnetlink_queue && yum install wget -y</code></pre>
+      </div>
+
+      <h3>Ubuntu</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>apt-get update && apt-get install -y gcc libnetfilter-queue-dev && apt install -y iptables</code></pre>
+      </div>
+
+      <hr style="margin: 40px 0; border: none; border-top: 1px dashed #cbd5e1;">
+
+      <h2>🏃 运行</h2>
+
+      <h2>混包 80 口</h2>
+      <div class="code-block highlight">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/002/CDNK && chmod 744 /etc/CDNK && ./CDNK -q 80 -w 7 -c 3</code></pre>
+      </div>
+      <h3>卸载</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>cd /etc && ./CDNK -u</code></pre>
+      </div>
+
+      <h2>混包 443 口</h2>
+      <div class="code-block highlight">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/002/GYD443 && chmod 744 /etc/GYD443 && ./GYD443 -q 443 -w 37 -c 1</code></pre>
+      </div>
+      <h3>卸载</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>cd /etc && ./GYD443 -u</code></pre>
+      </div>
+
+      <h2>不混包 443 口</h2>
+      <div class="code-block highlight">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>cd /etc && wget https://picgo91.cdn456.eu.org/KY66812/GYD/002/geneva && chmod 744 /etc/geneva && ./geneva -w 17</code></pre>
+      </div>
+      <h3>卸载</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>cd /etc && ./geneva -u</code></pre>
+      </div>
+
+      <hr style="margin: 40px 0; border: none; border-top: 1px dashed #cbd5e1;">
+
+      <h2>🔌 443 添加端口</h2>
+      <p>比如添加 8443 端口：</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">复制</button>
+        <pre><code>iptables -I OUTPUT -p tcp --sport 8443 -j NFQUEUE --queue-num 443 --queue-bypass</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function copyCode(btn) {
+      const code = btn.nextElementSibling.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(code);
+        btn.textContent = '✓ 已复制';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '复制';
+          btn.classList.remove('copied');
+        }, 1800);
+      } catch (err) {
+        btn.textContent = '✗ 失败';
+        setTimeout(() => btn.textContent = '复制', 1800);
+      }
+    }
+  </script>
+</body>
+</html>
